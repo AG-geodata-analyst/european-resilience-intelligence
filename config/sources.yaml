@@ -1,0 +1,152 @@
+# Source registry — Work Package 2 deliverable.
+# Status values: candidate | tested | integrated | deferred | rejected
+version: 0.1.0
+last_reviewed: "2026-11-02"
+
+sources:
+  - id: EUROSTAT_GISCO_NUTS
+    name: Eurostat GISCO — NUTS boundaries
+    url: https://ec.europa.eu/eurostat/web/gisco/geodata
+    countries: [EU]
+    sector: geography
+    access_type: download
+    auth: none
+    update_frequency: infrequent
+    license: Eurostat open data
+    geographic_precision: nuts0-nuts3
+    status: candidate
+    limitations: NUTS edition must be pinned; boundary revisions break historical joins.
+
+  - id: EUROSTAT_POP_GRID_2021
+    name: Eurostat 2021 population grid (1 km²)
+    url: https://ec.europa.eu/eurostat/web/gisco/geodata/population-distribution/population-grids
+    countries: [EU]
+    sector: demography
+    access_type: download
+    auth: none
+    crs: EPSG:3035
+    update_frequency: infrequent
+    status: candidate
+    limitations: Grid aggregates cannot be attributed to individual events.
+
+  - id: CLOUDFLARE_RADAR
+    name: Cloudflare Radar — Internet outages and anomalies
+    url: https://developers.cloudflare.com/api/resources/radar/
+    countries: [global]
+    sector: digital_infrastructure
+    access_type: rest_api
+    auth: bearer_token
+    update_frequency: frequent
+    geographic_precision: country
+    status: candidate
+    priority: 1
+    limitations: >-
+      An outage is not automatically a cyberattack. Preserve reported attribution only;
+      never invent a cause.
+
+  - id: CERT_EE
+    name: CERT-EE / RIA public advisories
+    url: https://www.ria.ee/en/cyber-security/handling-cyber-incidents-cert-ee
+    countries: [EE]
+    sector: cyber
+    access_type: web_notices
+    auth: none
+    update_frequency: periodic
+    status: candidate
+    priority: 2
+    limitations: >-
+      Reporting environment is primarily for authorities and service providers.
+      Not an openly downloadable live incident database.
+
+  - id: CERT_LV
+    name: CERT.LV public advisories and activity reviews
+    url: https://cert.lv/en/
+    countries: [LV]
+    sector: cyber
+    access_type: web_notices
+    auth: none
+    update_frequency: periodic_quarterly
+    status: candidate
+    priority: 2
+    limitations: Published statistics are periodic reviews, not a real-time feed.
+
+  - id: NKSC_LT
+    name: Lithuanian NKSC public reports and statistics
+    url: https://nksc.lrv.lt/
+    countries: [LT]
+    sector: cyber
+    access_type: web_notices
+    auth: none
+    update_frequency: periodic
+    status: candidate
+    priority: 2
+    limitations: National aggregate statistics; limited regional resolution.
+
+  - id: ENTSOE_TRANSPARENCY
+    name: ENTSO-E Transparency Platform
+    url: https://transparency.entsoe.eu/
+    countries: [EU]
+    sector: energy
+    access_type: rest_api
+    auth: api_token
+    update_frequency: per_publication_cycle
+    status: candidate
+    priority: 3
+    limitations: >-
+      Aggregate system condition only. Load/generation/flow changes do not demonstrate
+      that consumers experienced a local outage.
+
+  - id: ELERING
+    name: Elering electricity-system information
+    url: https://www.elering.ee/
+    countries: [EE]
+    sector: energy
+    access_type: web_plus_archive
+    auth: none
+    update_frequency: frequent
+    status: candidate
+    limitations: >-
+      Estfeed Datahub is NOT a public open-data feed — eligibility and contract required.
+      Do not build the public project on access we do not have.
+
+  - id: COPERNICUS_EMS
+    name: Copernicus Emergency Management Service — Mapping
+    url: https://mapping.emergency.copernicus.eu/
+    countries: [global]
+    sector: natural_hazard
+    access_type: rest_api
+    auth: none
+    update_frequency: activation_dependent
+    status: candidate
+    priority: 3
+    limitations: Activation-based, not a continuous hazard feed.
+
+  - id: BEREC_WARNING_SYSTEMS
+    name: BEREC public-warning-systems database
+    url: https://www.berec.europa.eu/
+    countries: [EU]
+    sector: resilience_context
+    access_type: reference_dataset
+    auth: none
+    update_frequency: infrequent
+    status: candidate
+    limitations: Reference dataset describing alerting channels, not a live alert stream.
+
+deferred:
+  - water_service_interruptions
+  - drone_incidents
+  - sabotage_reports
+  - transport_interruptions
+  # Rationale: no standardised, attributable, legally reusable source across the Baltics yet.
+  # A curated, source-linked record is preferable to unreliable news-derived volume.
+
+initial_priority_order:
+  - EUROSTAT_GISCO_NUTS
+  - EUROSTAT_POP_GRID_2021
+  - CLOUDFLARE_RADAR
+  - CERT_EE
+  - CERT_LV
+  - NKSC_LT
+  - ENTSOE_TRANSPARENCY
+  - ELERING
+  - COPERNICUS_EMS

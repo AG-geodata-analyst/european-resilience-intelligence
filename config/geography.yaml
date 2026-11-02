@@ -1,0 +1,28 @@
+version: 0.1.0
+
+countries:
+  - code: EE
+    name: Estonia
+    nuts_version: "2024"
+    languages: [et, en]
+    timezone: Europe/Tallinn
+    default_region_level: NUTS3
+  - code: LV
+    name: Latvia
+    nuts_version: "2024"
+    languages: [lv, en]
+    timezone: Europe/Riga
+    default_region_level: NUTS3
+  - code: LT
+    name: Lithuania
+    nuts_version: "2024"
+    languages: [lt, en]
+    timezone: Europe/Vilnius
+    default_region_level: NUTS3
+
+crs:
+  storage: EPSG:4326        # GeoJSON / API output
+  analysis: EPSG:3035       # area and distance calculations
+
+# NOTE: the NUTS version above must be validated against the GISCO release actually
+# downloaded before any region identifiers are stored.

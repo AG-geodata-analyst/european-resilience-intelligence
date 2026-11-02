@@ -1,0 +1,55 @@
+version: 0.1.0
+
+attribution_rules:
+  - Preserve the reported cause; never infer one.
+  - Internet outage is not by itself a cyberattack.
+  - Aggregate system stress is not a consumer outage.
+  - Category assignment implies no intent and no actor.
+
+categories:
+  CYBER:
+    - Ransomware
+    - DDoS
+    - Data breach
+    - Service disruption
+    - Other reported cyber incident
+  DIGITAL_INFRASTRUCTURE:
+    - Internet outage
+    - Telecommunications disruption
+    - Digital service interruption
+  ENERGY:
+    - Electricity interruption
+    - Generation disruption
+    - System stress observation
+  WATER:
+    - Water service interruption
+  TRANSPORT:
+    - Airport disruption
+    - Rail disruption
+    - Road disruption
+    - Port disruption
+  PHYSICAL_DISRUPTION:
+    - Officially reported infrastructure incident
+    - Drone-related disruption
+    - Other publicly reported incident
+  NATURAL_HAZARD:
+    - Flood
+    - Storm
+    - Wildfire
+    - Other emergency event
+
+verification_levels:
+  - reported
+  - corroborated
+  - verified
+  - unconfirmed
+  - retracted
+  - disputed
+
+geographic_precision_levels:
+  - country
+  - nuts1
+  - nuts2
+  - nuts3
+  - municipality
+  - unknown

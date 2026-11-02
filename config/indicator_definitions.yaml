@@ -1,0 +1,30 @@
+version: 0.1.0
+
+# Six dimensions are kept separate and are never collapsed into a single score.
+dimensions:
+  reported_incident_activity:
+    variables: [unique_events, distinct_sources, event_category, recency, severity_reported, verification_status]
+    rule: Count unique events, not articles.
+  essential_service_disruption:
+    variables: [outages, duration, affected_population, connectivity_anomalies]
+    rule: Observed interruptions only; no prediction.
+  regional_exposure:
+    variables: [population, population_density, age_distribution, urban_rural_split]
+    rule: Exposure is context, not vulnerability.
+  essential_service_dependency:
+    variables: [source_sector, dependent_sector, dependency_type, evidence_reference, confidence]
+    rule: Every edge labelled documented | literature | assumption.
+  resilience_preparedness:
+    variables: [warning_channels, published_guidance, continuity_arrangements]
+    rule: Presence of a plan does not prove it works.
+  data_confidence:
+    variables: [last_update, source_count, source_type, coverage, verification_level, missing_pct, value_origin]
+    rule: Displayed on every region and every indicator.
+
+value_origin:
+  - observed
+  - estimated
+  - simulated
+
+default_display_rule:
+  no_data: "insufficient evidence"   # never "low risk" or "safe"
