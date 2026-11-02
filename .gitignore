@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Secrets & environment
+.env
+*.token
+secrets/
+
+# Data — never commit raw source payloads or credentials
+data/
+!data/.gitkeep
+
+# Airflow
+airflow.cfg
+airflow-webserver.cfg
+logs/
+
+# dbt
+dbt_packages/
+target/
+
+# OS / editors
+.DS_Store
+.idea/
+.vscode/
