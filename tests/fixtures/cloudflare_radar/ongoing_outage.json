@@ -1,0 +1,14 @@
+{
+  "success": true, "errors": [],
+  "result": {"annotations": [{
+    "id": "900",
+    "dataSource": "ALL",
+    "eventType": "OUTAGE",
+    "locations": ["LV"],
+    "scope": "Riga",
+    "outage": {"outageCause": "UNKNOWN", "outageType": "REGIONAL"},
+    "startDate": "2026-10-01T06:00:00Z",
+    "endDate": null,
+    "linkedUrl": null
+  }]}
+}

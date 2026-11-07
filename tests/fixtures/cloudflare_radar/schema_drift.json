@@ -1,0 +1,7 @@
+{
+  "success": true, "errors": [],
+  "result": {"annotations": [{
+    "dataSource": "ALL",
+    "startDate": "2026-10-03T00:00:00Z"
+  }]}
+}
