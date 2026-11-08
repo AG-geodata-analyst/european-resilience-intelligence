@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+  <title>CERT-EE Advisories</title>
+  <link>https://www.ria.ee/en/</link>
+  <description>Estonian Cyber Security Advisories</description>
+  <item>
+    <title>Critical vulnerability in widely used router</title>
+    <link>https://www.ria.ee/en/advisory-123</link>
+    <description>A critical flaw allows remote code execution.</description>
+    <pubDate>Mon, 06 Nov 2026 10:00:00 GMT</pubDate>
+    <guid>advisory-123</guid>
+  </item>
+</channel>
+</rss>
