@@ -24,6 +24,9 @@ dependencies = [
   "psycopg[binary]>=3.1",
   "geoalchemy2>=0.15",
   "alembic>=1.13",
+  "streamlit>=1.67",
+  "folium>=0.20",
+  "streamlit-folium>=0.27",
 ]
 
 [project.optional-dependencies]
