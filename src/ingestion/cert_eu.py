@@ -17,8 +17,8 @@ from .base import (
 RSS_URL = "https://www.ria.ee/en/rss.xml"
 
 
-class CertEeConnector(SourceConnector):
-    source_id: ClassVar[str] = "CERT_EE"
+class CertEuConnector(SourceConnector):
+    source_id: ClassVar[str] = "CERT_EU"
 
     def __init__(self, client: httpx.Client | None = None, timeout: float = 30.0) -> None:
         self._client = client or httpx.Client(timeout=timeout)

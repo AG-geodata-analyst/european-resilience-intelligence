@@ -2,18 +2,18 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 import pytest
+from src.ingestion.cert_eu import CertEuConnector
 
 from src.ingestion.base import RawDocument, SourceSchemaError
-from src.ingestion.cert_ee import CertEeConnector
 
-FIX = Path(__file__).parent.parent / "fixtures" / "cert_ee"
+FIX = Path(__file__).parent.parent / "fixtures" / "cert_eu"
 
 
 def _doc(payload: dict) -> RawDocument:
     return RawDocument(
-        source_id="CERT_EE",
+        source_id="CERT_EU",
         fetched_at=datetime.now(UTC),
-        request_url="https://www.ria.ee/en/rss.xml",
+        request_url="https://cert.europa.eu/publications/security-advisories-rss",
         http_status=200,
         payload=payload,
     )
@@ -21,7 +21,7 @@ def _doc(payload: dict) -> RawDocument:
 
 def test_valid_rss_yields_events():
     xml_text = (FIX / "valid_feed.xml").read_text()
-    c = CertEeConnector()
+    c = CertEuConnector()
     events = list(c.transform(_doc({"raw_xml": xml_text})))
 
     assert len(events) == 1
@@ -39,6 +39,6 @@ def test_valid_rss_yields_events():
 
 
 def test_invalid_xml_raises_schema_error():
-    c = CertEeConnector()
+    c = CertEuConnector()
     with pytest.raises(SourceSchemaError, match="Invalid XML"):
         list(c.transform(_doc({"raw_xml": "<rss><channel>"})))

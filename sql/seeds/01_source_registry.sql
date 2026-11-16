@@ -18,8 +18,8 @@ INSERT INTO source_registry (
     source_id, name, url, source_type, license, access_method,
     update_frequency, geographic_precision, limitations
 ) VALUES (
-    'CERT_EE',
-    'CERT-EU / RIA Cyber Advisories',
+    'CERT_EU',
+    'CERT-EU Cyber Advisories',
     'https://cert.europa.eu/',
     'api',
     'Public domain',
