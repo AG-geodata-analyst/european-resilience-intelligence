@@ -1,4 +1,3 @@
-
 import os
 from datetime import UTC, datetime
 
@@ -12,19 +11,23 @@ from src.ingestion.runner import IngestionRunner
 
 load_dotenv(".env")
 
+
 @pytest.mark.integration
 def test_ingestion_runner_inserts_to_db():
     engine = create_engine(
-        f"postgresql+psycopg://{os.getenv('POSTGRES_USER','bri')}:{os.getenv('POSTGRES_PASSWORD','change_me')}@"
-        f"{os.getenv('POSTGRES_HOST','localhost')}:{os.getenv('POSTGRES_PORT','5432')}/{os.getenv('POSTGRES_DB','bri')}"
+        f"postgresql+psycopg://{os.getenv('POSTGRES_USER', 'bri')}:{os.getenv('POSTGRES_PASSWORD', 'change_me')}@"
+        f"{os.getenv('POSTGRES_HOST', 'localhost')}:{os.getenv('POSTGRES_PORT', '5432')}/"
+        f"{os.getenv('POSTGRES_DB', 'bri')}"
     )
-    
+
     with engine.begin() as conn:
-        conn.execute(text("""
+        conn.execute(
+            text("""
             INSERT INTO source_registry (source_id, name, url, source_type) 
             VALUES ('CERT_EU', 'CERT-EU Test', 'http://test', 'api')
             ON CONFLICT DO NOTHING;
-        """))
+        """)
+        )
 
     xml_text = """<?xml version="1.0" encoding="UTF-8"?>
     <rss version="2.0"><channel><item>
@@ -33,18 +36,18 @@ def test_ingestion_runner_inserts_to_db():
     <pubDate>Mon, 06 Nov 2026 10:00:00 GMT</pubDate>
     <guid>integration-test-999</guid>
     </item></channel></rss>"""
-    
+
     doc = RawDocument(
         source_id="CERT_EU",
         fetched_at=datetime.now(UTC),
         request_url="http://test",
         http_status=200,
-        payload={"raw_xml": xml_text}
+        payload={"raw_xml": xml_text},
     )
 
     connector = CertEuConnector()
     runner = IngestionRunner(engine, connector)
-    
+
     with engine.begin() as conn:
         raw_id, raw_new = runner._persist_raw(conn, doc)
         events = list(connector.transform(doc))

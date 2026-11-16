@@ -2,9 +2,9 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 import pytest
-from src.ingestion.cert_eu import CertEuConnector
 
 from src.ingestion.base import RawDocument, SourceSchemaError
+from src.ingestion.cert_eu import CertEuConnector
 
 FIX = Path(__file__).parent.parent / "fixtures" / "cert_eu"
 
